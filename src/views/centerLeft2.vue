@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: CYZ
+ * @Date: 2020-09-01 10:06:32
+ * @LastEditors: CYZ
+ * @LastEditTime: 2020-09-01 16:41:49
+-->
 <template>
   <div id="centreLeft1">
     <div class="bg-color-black">
@@ -6,39 +14,61 @@
           <icon name="chart-pie"></icon>
         </span>
         <div class="d-flex">
-          <span class="fs-xl text mx-2">数据情况雷达图</span>
+          <span class="fs-xl text mx-2">今日累积停车收费总量</span>
           <dv-decoration-1 style="width:1.25rem;height:.25rem; position:relative;top:-.0375rem;" />
         </div>
       </div>
       <div class="d-flex jc-center">
-        <centreLeft2Chart />
+        <!-- <centreLeft2Chart /> -->
+         <line-chart :chart-data="lineChartData" height="2.8rem" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import centreLeft2Chart from "@/components/echart/centerLeft2/centreLeft2Chart";
+// import centreLeft2Chart from "@/components/echart/centerLeft2/centreLeft2Chart";
+import LineChart from "./dashboard/LineChart";
+const lineChartData = {
+  newVisitis: {
+    expectedData: [100, 120, 161, 134, 105, 160, 165],
+    actualData: [120, 82, 91, 154, 162, 140, 145],
+  },
+};
 export default {
   data() {
-    return {};
+    return {
+       lineChartData: lineChartData.newVisitis,
+    };
   },
   components: {
-    centreLeft2Chart
+    // centreLeft2Chart,
+    LineChart,
   },
-  mounted() {},
-  methods: {}
+  mounted() {
+    this.getAmountSummary();
+
+  },
+  methods: {
+    async getAmountSummary() {
+      const newVisitis  = await this.$http.get(
+        "/amountSummary/nowAndYesterday"
+      );
+        this.lineChartData = newVisitis.data.newVisitis;
+    },
+  }
 };
 </script>
 
 <style lang="scss">
 #centreLeft1 {
   padding: 0.2rem;
-  height: 5.125rem;
+  height: 3.5rem;
   min-width: 3.75rem;
   border-radius: 0.0625rem;
+  width: 100%;
   .bg-color-black {
-    height: 4.8125rem;
+    height: 3.1rem;
     border-radius: 0.125rem;
   }
   .text {

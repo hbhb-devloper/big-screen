@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-02 10:28:02
+ * @LastEditTime: 2020-09-02 10:20:33
 -->
 <template>
   <div id="centreLeft1">
@@ -14,14 +14,18 @@
           <icon name="chart-pie"></icon>
         </span>
         <div class="d-flex">
-          <span class="fs-xl text mx-2">整体车位使用情况</span>
+          <span class="fs-xl text mx-2">车位周转率分析</span>
           <dv-decoration-1 style="width:1.25rem;height:.25rem; position:relative;top:-.0375rem;" />
         </div>
       </div>
       <div class="d-flex centerList">
-        <div class="pieList" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-          <div v-for="index in 3" :key="index" class="pieMid">
-            <centerChart :id="index+8" :tips="30" :colorObj="rate[1].colorData" />
+        <div class="select">
+          <dv-decoration-9 style="width:40px;height:40px;">道路</dv-decoration-9>
+          <dv-decoration-9 style="width:40px;height:40px;">封闭</dv-decoration-9>
+        </div>
+        <div class="pieList">
+          <div v-for="index in 8" :key="index" class="pieMid">
+            <centerChart :id="index" :tips="30" :colorObj="rate[1].colorData" />
             <div class="pieTitle">贝因美停车场</div>
           </div>
         </div>
@@ -102,9 +106,9 @@ export default {
   flex: 2;
   height: 100% !important;
 }
-.pieTitle {
-  font-size: 12px;
-  transform: scale(0.7);
-  white-space: nowrap;
+.pieTitle{
+    font-size: 12px;
+    transform: scale(0.7);
+    white-space: nowrap;
 }
 </style>

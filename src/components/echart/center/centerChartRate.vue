@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div :id="id" style="width:1.5rem;height:1.25rem;"></div>
+  <div class="pieItem">
+    <div :id="id" class="pieCanvas"></div>
   </div>
 </template>
 
@@ -10,7 +10,7 @@ import echartMixins from "@/utils/resizeMixins";
 export default {
   data() {
     return {
-      chart: null
+      chart: null,
     };
   },
   mixins: [echartMixins],
@@ -21,28 +21,28 @@ export default {
     id: {
       type: String,
       required: true,
-      default: "chartRate"
+      default: "chartRate",
     },
     tips: {
       type: Number,
       required: true,
-      default: 50
+      default: 50,
     },
     colorObj: {
       type: Object,
-      default: function() {
+      default: function () {
         return {
           textStyle: "#3fc0fb",
           series: {
             color: ["#00bcd44a", "transparent"],
             dataColor: {
               normal: "#03a9f4",
-              shadowColor: "#97e2f5"
-            }
-          }
+              shadowColor: "#97e2f5",
+            },
+          },
         };
-      }
-    }
+      },
+    },
   },
   methods: {
     draw() {
@@ -58,10 +58,11 @@ export default {
             y: "center",
             textStyle: {
               color: this.colorObj.textStyle,
-              fontSize: 16
-            }
-          }
+              fontSize: 16,
+            },
+          },
         ],
+        
         series: [
           {
             type: "pie",
@@ -70,10 +71,12 @@ export default {
             hoverAnimation: false,
             color: this.colorObj.series.color,
             label: {
+              // color: 'rgba(255, 255, 255, 0.3)'
               normal: {
-                show: false
-              }
+                show: false,
+              },
             },
+            
             data: [
               {
                 value: tips,
@@ -81,25 +84,39 @@ export default {
                   normal: {
                     color: this.colorObj.series.dataColor.normal,
                     shadowBlur: 10,
-                    shadowColor: this.colorObj.series.dataColor.shadowColor
-                  }
-                }
+                    shadowColor: this.colorObj.series.dataColor.shadowColor,
+                  },
+                },
               },
               {
-                value: 100 - tips
-              }
-            ]
-          }
-        ]
+                value: 100 - tips,
+              },
+            ],
+          },
+        ],
       };
       this.chart.setOption(option);
-    }
+    },
   },
   destroyed() {
     window.onresize = null;
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.pieItem {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  // margin: 10px;
+  position: relative;
+}
+.pieCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 </style>

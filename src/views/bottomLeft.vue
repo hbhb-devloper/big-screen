@@ -1,29 +1,46 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: CYZ
+ * @Date: 2020-09-01 10:06:32
+ * @LastEditors: CYZ
+ * @LastEditTime: 2020-09-01 15:21:16
+-->
 <template>
-  <div id="bottomLeft">
+  <div id="centreLeft1">
     <div class="bg-color-black">
       <div class="d-flex pt-2 pl-2">
         <span style="color:#5cd9e8">
-          <icon name="chart-bar"></icon>
+          <icon name="chart-pie"></icon>
         </span>
         <div class="d-flex">
-          <span class="fs-xl text mx-2">数据统计图</span>
+          <span class="fs-xl text mx-2">停车时长分析</span>
+          <dv-decoration-1 style="width:1.25rem;height:.25rem; position:relative;top:-.0375rem;" />
         </div>
       </div>
-      <div>
-        <bottomLeftChart />
+      <div class="d-flex jc-center">
+        <!-- <centreLeft2Chart /> -->
+         <bottonline-chart :chart-data="lineChartData" height="2.8rem" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import bottomLeftChart from "@/components/echart/bottom/bottomLeftChart";
+import bottonlineChart from "./dashboard/bottonLineChart";
+const lineChartData = {
+  newVisitis: {
+    actualData: [120, 82, 91, 154, 162, 140, 145],
+  },
+};
 export default {
   data() {
-    return {};
+    return {
+       lineChartData: lineChartData.newVisitis,
+    };
   },
   components: {
-    bottomLeftChart
+    bottonlineChart,
   },
   mounted() {},
   methods: {}
@@ -31,25 +48,5 @@ export default {
 </script>
 
 <style lang="scss">
-#bottomLeft {
-  padding: 0.3rem 0.2rem;
-  height: 6.5rem;
-  min-width: 3.75rem;
-  border-radius: 0.0625rem;
-  .bg-color-black {
-    height: 6.0625rem;
-    border-radius: 0.125rem;
-  }
-  .text {
-    color: #c3cbde;
-  }
-  .chart-box {
-    margin-top: 0.2rem;
-    width: 2.125rem;
-    height: 2.125rem;
-    .active-ring-name {
-      padding-top: 0.125rem;
-    }
-  }
-}
+
 </style>
