@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-02 10:28:02
+ * @LastEditTime: 2020-09-03 18:21:48
 -->
 <template>
   <div id="centreLeft1">
@@ -20,9 +20,9 @@
       </div>
       <div class="d-flex centerList">
         <div class="pieList" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
-          <div v-for="index in 3" :key="index" class="pieMid">
-            <centerChart :id="index+8" :tips="30" :colorObj="rate[1].colorData" />
-            <div class="pieTitle">贝因美停车场</div>
+          <div v-for="(item,index) in chartData" :key="index" class="pieMid1">
+            <rightChartRate :id="item.id+100" :tips="(item.use/item.all)*100" :pieUse="item.use" :pieAll="item.all"  :pieName="rate[index].name" :colorObj="rate[1].colorData" />
+            <div class="pieTitle">·{{rate[index].name}}</div>
           </div>
         </div>
       </div>
@@ -31,14 +31,19 @@
 </template>
 
 <script>
-import centerChart from "@/components/echart/center/centerChartRate";
+import rightChartRate from "@/components/echart/center/rightChartRate";
 export default {
+  props: {
+    chartData: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       rate: [
         {
-          id: "centerRate1",
-          tips: 60,
+          name:"路内泊数",
           colorData: {
             textStyle: "#3fc0fb",
             series: {
@@ -51,8 +56,20 @@ export default {
           },
         },
         {
-          id: "centerRate2",
-          tips: 40,
+          name:"封闭社区停车场",
+          colorData: {
+            textStyle: "#67e0e3",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#ff9800",
+                shadowColor: "#fcebad",
+              },
+            },
+          },
+        },
+        {
+          name:"私有封闭式停车场",
           colorData: {
             textStyle: "#67e0e3",
             series: {
@@ -68,7 +85,15 @@ export default {
     };
   },
   components: {
-    centerChart,
+    rightChartRate,
+  },
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.chartData=val
+      },
+    },
   },
   mounted() {},
   methods: {},
@@ -85,8 +110,8 @@ export default {
   display: flex;
   flex-direction: row;
 }
-.pieMid {
-  width: 20%;
+.pieMid1 {
+  width: 30%;
   margin: 5px;
 }
 .centerList {

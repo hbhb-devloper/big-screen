@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-02 18:22:43
+ * @LastEditTime: 2020-09-03 17:19:18
 -->
 <template>
   <div id="centreLeft1" style="height: 4.5rem;">
@@ -24,9 +24,9 @@
           <dv-decoration-9 style="width:40px;height:40px;">封闭</dv-decoration-9>
         </div>
         <div class="pieList">
-          <div v-for="index in 8" :key="index" class="pieMid">
-            <centerChart :id="index" :tips="30" :colorObj="rate[1].colorData" />
-            <div class="pieTitle">贝因美停车场</div>
+          <div v-for="(item,index) in chartData" :key="index" class="pieMid">
+            <centerChart :id="item.id" :tips="60" :colorObj="rate[index].colorData" />
+            <div class="pieTitle">{{item.name}}</div>
           </div>
         </div>
       </div>
@@ -37,33 +37,107 @@
 <script>
 import centerChart from "@/components/echart/center/centerChartRate";
 export default {
+   props: {
+    chartData: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       rate: [
         {
-          id: "centerRate1",
-          tips: 60,
           colorData: {
-            textStyle: "#3fc0fb",
+            textStyle: "#50c2ff",
             series: {
-              color: ["#00bcd44a", "transparent"],
+              color: ["#faf3a378", "transparent"],
               dataColor: {
-                normal: "#03a9f4",
+                normal: "#50c2ff",
                 shadowColor: "#97e2f5",
               },
             },
           },
         },
         {
-          id: "centerRate2",
-          tips: 40,
           colorData: {
-            textStyle: "#67e0e3",
+            textStyle: "#50c2ff",
             series: {
               color: ["#faf3a378", "transparent"],
               dataColor: {
                 normal: "#ff9800",
-                shadowColor: "#fcebad",
+                shadowColor: "#97e2f5",
+              },
+            },
+          },
+        },
+        {
+          colorData: {
+            textStyle: "#f9d905",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#f9d905",
+                shadowColor: "#97e2f5",
+              },
+            },
+          },
+        },
+        {
+          colorData: {
+            textStyle: "#4c83ff",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#4c83ff",
+                shadowColor: "#97e2f5",
+              },
+            },
+          },
+        },
+        {
+          colorData: {
+            textStyle: "#caff6f",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#caff6f",
+                shadowColor: "#97e2f5",
+              },
+            },
+          },
+        },
+        {
+          colorData: {
+            textStyle: "#01ef97",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#01ef97",
+                shadowColor: "#97e2f5",
+              },
+            },
+          },
+        },
+        {
+          colorData: {
+            textStyle: "#fe6529",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#fe6529",
+                shadowColor: "#97e2f5",
+              },
+            },
+          },
+        },
+        {
+          colorData: {
+            textStyle: "#2f37d9",
+            series: {
+              color: ["#faf3a378", "transparent"],
+              dataColor: {
+                normal: "#2f37d9",
+                shadowColor: "#97e2f5",
               },
             },
           },
@@ -74,7 +148,16 @@ export default {
   components: {
     centerChart,
   },
-  mounted() {},
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        this.chartData=val
+      },
+    },
+  },
+  mounted() {
+  },
   methods: {},
 };
 </script>
@@ -111,5 +194,6 @@ export default {
     transform: scale(0.7);
     white-space: nowrap;
     margin-top: 6px;
+    text-align: center;
 }
 </style>

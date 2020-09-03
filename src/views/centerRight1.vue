@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-01 14:10:14
+ * @LastEditTime: 2020-09-03 11:58:12
 -->
 <template>
   <div id="centreLeft1">
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="d-flex jc-center">
-         <bar-chart height="2.8rem" />
+         <bar-chart height="2.8rem" :bar-chart="barChart" />
       </div>
     </div>
   </div>
@@ -29,14 +29,31 @@
 import BarChart from "./dashboard/BarChart";
 
 export default {
+  props: {
+    barList: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
+      barChart:[]
     };
   },
   components: {
     BarChart,
   },
-  mounted() {},
+  watch: {
+    barList: {
+      deep: true,
+      handler(val) {
+        this.barChart = val;
+      },
+    },
+  },
+  mounted() {
+    this.barChart=this.barList
+  },
   methods: {}
 };
 </script>

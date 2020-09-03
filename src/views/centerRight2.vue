@@ -4,11 +4,11 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-01 14:24:39
+ * @LastEditTime: 2020-09-03 18:23:39
 -->
 <template>
   <div id="centreLeft1">
-    <div class="bg-color-black">
+    <div class="bg-color-black" style="padding: 0 18px;">
       <div class="d-flex pt-2 pl-2">
         <span style="color:#5cd9e8">
           <icon name="chart-pie"></icon>
@@ -27,6 +27,12 @@
 
 <script>
 export default {
+  props:{
+    yujinListData: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       yujinList: {
@@ -70,7 +76,17 @@ export default {
     };
   },
   components: {},
-  mounted() {},
+  watch: {
+    yujinListData: {
+      deep: true,
+      handler(val) {
+        this.yujinList.data=val
+      },
+    },
+  },
+  mounted() {
+    this.yujinList.data=this.yujinListData
+  },
   methods: {},
 };
 </script>

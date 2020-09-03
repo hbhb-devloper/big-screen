@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-01 15:21:16
+ * @LastEditTime: 2020-09-03 14:50:34
 -->
 <template>
   <div id="centreLeft1">
@@ -20,7 +20,7 @@
       </div>
       <div class="d-flex jc-center">
         <!-- <centreLeft2Chart /> -->
-         <bottonline-chart :chart-data="lineChartData" height="2.8rem" />
+        <bottonline-chart :chart-data="lineChartData" height="2.8rem" />
       </div>
     </div>
   </div>
@@ -34,19 +34,36 @@ const lineChartData = {
   },
 };
 export default {
+  props: {
+    chartData: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
-       lineChartData: lineChartData.newVisitis,
+      lineChartData: lineChartData.newVisitis,
     };
   },
   components: {
     bottonlineChart,
   },
-  mounted() {},
-  methods: {}
+  watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        // console.log("bottomLeft", val);
+        this.lineChartData.actualData = val;
+      },
+    },
+  },
+  mounted() {
+    // console.log("chartData", this.chartData);
+    this.lineChartData.actualData = this.chartData;
+  },
+  methods: {},
 };
 </script>
 
 <style lang="scss">
-
 </style>

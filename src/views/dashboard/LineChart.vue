@@ -40,7 +40,8 @@ export default {
     chartData: {
       deep: true,
       handler(val) {
-        this.setOptions(val);
+        // this.setOptions(val);
+        this.chartData=val
         this.$nextTick(() => {
           this.initChart();
         });

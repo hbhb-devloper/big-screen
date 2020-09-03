@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-08-20 10:50:58
  * @LastEditors: CYZ
- * @LastEditTime: 2020-08-31 16:58:06
+ * @LastEditTime: 2020-09-03 18:18:59
 -->
 <template>
   <div :class="className" :style="{height:height,width:width}" />
@@ -31,7 +31,11 @@ export default {
     height: {
       type: String,
       default: '300px'
-    }
+    },
+    barChart: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
@@ -42,6 +46,17 @@ export default {
     this.$nextTick(() => {
       this.initChart()
     })
+  },
+  watch: {
+    barChart: {
+      deep: true,
+      handler() {
+        // this.barChart = val;
+        this.$nextTick(() => {
+          this.initChart();
+        });
+      },
+    },
   },
   beforeDestroy() {
     if (!this.chart) {
@@ -70,7 +85,7 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['接入停车场数', '封闭停车场数', '泊位停车场数', '公共停车场数', '封闭社会停车场数'],
           axisTick: {
             alignWithLabel: true
           }
@@ -86,7 +101,7 @@ export default {
           type: 'bar',
           stack: 'vistors',
           barWidth: '60%',
-          data: [79, 52, 200, 334, 390, 330, 220],
+          data: this.barChart,
           animationDuration
         }]
       })

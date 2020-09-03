@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-02 11:11:04
+ * @LastEditTime: 2020-09-03 18:37:49
 -->
 <template>
   <div id="centreLeft1">
@@ -52,17 +52,15 @@ export default {
     // centreLeft2Chart,
     LineChart,
   },
-   watch: {
+  watch: {
     chartData: {
       deep: true,
       handler(val) {
-        console.log('val',val);
         this.lineChartData=val
       },
     },
   },
   mounted() {
-    console.log('this.chartData',this.chartData);
     this.lineChartData=this.chartData
   },
   methods: {
@@ -84,6 +82,7 @@ export default {
   }
   .text {
     color: #c3cbde;
+    font-size: 14px;
   }
   .chart-box {
     margin-top: 0.2rem;

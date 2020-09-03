@@ -20,9 +20,9 @@ export default {
   },
   props: {
     id: {
-      type: String,
+      type: Number,
       required: true,
-      default: "chartRate",
+      // default: "chartRate",
     },
     tips: {
       type: Number,
@@ -42,6 +42,17 @@ export default {
             },
           },
         };
+      },
+    },
+  },
+  watch: {
+    tips: {
+      deep: true,
+      handler(val) {
+        this.tips=val
+        this.$nextTick(() => {
+          this.draw();
+        });
       },
     },
   },

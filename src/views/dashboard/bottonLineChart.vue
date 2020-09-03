@@ -39,8 +39,11 @@ export default {
   watch: {
     chartData: {
       deep: true,
-      handler(val) {
-        this.setOptions(val)
+      handler() {
+        // this.setOptions(val)
+        this.$nextTick(() => {
+          this.initChart();
+        });
       }
     }
   },
@@ -65,7 +68,7 @@ export default {
       this.chart.setOption({
         // 横坐标
         xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data: ['免费', '1小时', '2小时', '3小时', '4小时', '5小时', '5小时以上'],
           // 坐标轴两边留白
           boundaryGap: false,
           // 是否显示坐标轴刻度
@@ -98,12 +101,12 @@ export default {
           }
         },
         legend: {
-          data: [ 'actual']
+          data: [ '停车时长显示']
         },
         series: [
           
         {
-          name: 'actual',
+          name: '停车时长显示',
           smooth: true,
           type: 'line',
           itemStyle: {
