@@ -4,12 +4,12 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-02 10:20:33
+ * @LastEditTime: 2020-09-02 18:22:43
 -->
 <template>
-  <div id="centreLeft1">
-    <div class="bg-color-black">
-      <div class="d-flex pt-2 pl-2">
+  <div id="centreLeft1" style="height: 4.5rem;">
+    <div class="bg-color-black" style="margin-top:40px;height: calc(100% - 40px)">
+      <!-- <div class="d-flex pt-2 pl-2">
         <span style="color:#5cd9e8">
           <icon name="chart-pie"></icon>
         </span>
@@ -17,7 +17,7 @@
           <span class="fs-xl text mx-2">车位周转率分析</span>
           <dv-decoration-1 style="width:1.25rem;height:.25rem; position:relative;top:-.0375rem;" />
         </div>
-      </div>
+      </div> -->
       <div class="d-flex centerList">
         <div class="select">
           <dv-decoration-9 style="width:40px;height:40px;">道路</dv-decoration-9>
@@ -96,7 +96,7 @@ export default {
 .centerList {
   display: flex;
   flex-direction: row;
-  height: 85%;
+  height:100%;
 }
 .select {
   display: flex;
@@ -110,5 +110,6 @@ export default {
     font-size: 12px;
     transform: scale(0.7);
     white-space: nowrap;
+    margin-top: 6px;
 }
 </style>

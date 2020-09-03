@@ -57,29 +57,29 @@
           <el-row type="flex" justify="space-around" align="top">
             <el-col :span="7">
               <el-row>
-                <dv-border-box-1>
+                <dv-border-box-13>
                   <el-row type="flex" justify="start" align="bottom">
-                    <centerLeft2 />
+                    <centerLeft2 :chart-data="lineChartData" />
                   </el-row>
-                </dv-border-box-1>
-                <dv-border-box-1>
-                  <centerLeft1 />
-                </dv-border-box-1>
+                </dv-border-box-13>
+                <dv-border-box-13 style="margin-top:25px">
+                  <centerLeft1 :yujinListData="loadFactorParkingList" />
+                </dv-border-box-13>
               </el-row>
             </el-col>
-            <el-col :span="7">
+            <el-col :span="8">
               <el-row></el-row>
             </el-col>
             <el-col :span="7">
               <el-row>
-                <dv-border-box-1>
+                <dv-border-box-13>
                   <el-row>
                     <centerRight1 />
                   </el-row>
-                </dv-border-box-1>
-                <dv-border-box-1>
+                </dv-border-box-13>
+                <dv-border-box-13 style="margin-top:25px">
                   <centerRight2 />
-                </dv-border-box-1>
+                </dv-border-box-13>
               </el-row>
             </el-col>
           </el-row>
@@ -112,22 +112,22 @@
           <!-- <div class="bototm-box"> -->
           <el-row type="flex" justify="space-around" align="top">
             <el-col :span="7">
-              <el-row>
-                <dv-border-box-1>
+              <el-row style="margin-top:35px">
+                <dv-border-box-13>
                   <bottomLeft />
-                </dv-border-box-1>
+                </dv-border-box-13>
               </el-row>
             </el-col>
-            <el-col :span="7">
-              <dv-border-box-1>
+            <el-col :span="8">
+              <dv-border-box-11 title="车位周转率分析">
                 <bottomCenter />
-              </dv-border-box-1>
+              </dv-border-box-11>
             </el-col>
             <el-col :span="7">
-              <el-row>
-                <dv-border-box-1>
+              <el-row style="margin-top:35px">
+                <dv-border-box-13>
                   <bottomRight />
-                </dv-border-box-1>
+                </dv-border-box-13>
               </el-row>
             </el-col>
           </el-row>
@@ -153,17 +153,12 @@ import centerRight2 from "./centerRight2";
 import bottomCenter from "./bottomCenter";
 import bottomLeft from "./bottomLeft";
 import bottomRight from "./bottomRight";
-const lineChartData = {
-  newVisitis: {
-    expectedData: [100, 120, 161, 134, 105, 160, 165],
-    actualData: [120, 82, 91, 154, 162, 140, 145],
-  },
-};
+
 export default {
   data() {
     return {
       loading: true,
-      lineChartData: lineChartData.newVisitis,
+      lineChartData: {},
       value5: 50,
     };
   },
@@ -179,8 +174,25 @@ export default {
   },
   mounted() {
     this.cancelLoading();
+    this.showinfo();
   },
   methods: {
+    showinfo() {
+      this.getAmountSummary();
+      this.getLoadFactorParking();
+    },
+    getAmountSummary() {
+      this.$http.get("/amountSummary/nowAndYesterday").then((res) => {
+        console.log("nowAndYesterday", res);
+        this.lineChartData = res.data.newVisitis;
+      });
+    },
+    getLoadFactorParking() {
+      this.$http.get("/loadFactorParking/topNow").then((res) => {
+        console.log("loadFactorParking", res);
+        this.loadFactorParkingList = res.data;
+      });
+    },
     cancelLoading() {
       setTimeout(() => {
         this.loading = false;

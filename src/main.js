@@ -33,8 +33,8 @@ Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false;
 //把方法放到vue的原型上，这样就可以全局使用了
 Vue.prototype.$http = axios.create({
-  //设置20秒超时时间
-  timeout: 20000,
+  //设置10秒超时时间
+  timeout: 10000,
   baseURL: '/api', //这里写后端地址
 });
 new Vue({

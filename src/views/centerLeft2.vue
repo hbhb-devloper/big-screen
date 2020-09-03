@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-01 16:41:49
+ * @LastEditTime: 2020-09-02 11:11:04
 -->
 <template>
   <div id="centreLeft1">
@@ -20,7 +20,7 @@
       </div>
       <div class="d-flex jc-center">
         <!-- <centreLeft2Chart /> -->
-         <line-chart :chart-data="lineChartData" height="2.8rem" />
+        <line-chart :chart-data="lineChartData" height="2.8rem" />
       </div>
     </div>
   </div>
@@ -36,27 +36,38 @@ const lineChartData = {
   },
 };
 export default {
+  props:{
+    chartData: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
-       lineChartData: lineChartData.newVisitis,
+      lineChartData: lineChartData.newVisitis,
     };
   },
+  
   components: {
     // centreLeft2Chart,
     LineChart,
   },
+   watch: {
+    chartData: {
+      deep: true,
+      handler(val) {
+        console.log('val',val);
+        this.lineChartData=val
+      },
+    },
+  },
   mounted() {
-    this.getAmountSummary();
-
+    console.log('this.chartData',this.chartData);
+    this.lineChartData=this.chartData
   },
   methods: {
-    async getAmountSummary() {
-      const newVisitis  = await this.$http.get(
-        "/amountSummary/nowAndYesterday"
-      );
-        this.lineChartData = newVisitis.data.newVisitis;
-    },
-  }
+    
+  },
 };
 </script>
 

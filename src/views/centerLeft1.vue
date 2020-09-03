@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-01 14:23:12
+ * @LastEditTime: 2020-09-02 11:21:10
 -->
 <template>
   <div id="centreLeft1">
@@ -27,6 +27,12 @@
 
 <script>
 export default {
+  props:{
+    yujinListData: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       yujinList: {
@@ -70,7 +76,19 @@ export default {
     };
   },
   components: {},
-  mounted() {},
+  watch: {
+    yujinListData: {
+      deep: true,
+      handler(val) {
+        console.log('val',val);
+        this.yujinList.data=val
+      },
+    },
+  },
+  mounted() {
+    this.yujinList.data=this.yujinListData
+    console.log('this.yujinList',this.yujinList);
+  },
   methods: {},
 };
 </script>

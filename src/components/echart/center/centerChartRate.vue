@@ -1,6 +1,7 @@
 <template>
   <div class="pieItem">
     <div :id="id" class="pieCanvas"></div>
+    
   </div>
 </template>
 
