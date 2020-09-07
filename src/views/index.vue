@@ -653,7 +653,7 @@ export default {
             res.data.map((item, index) => {
               let lowIcon = {
                 show: true,
-                src: "https://www.zjkbtc.com/light.png",
+                src: "https://www.zjkbtc.com/low.png",
                 width: 30,
                 height: 30,
               };
