@@ -281,6 +281,9 @@ export default {
     getLoadFactorParking() {
       this.$http.get("/loadFactorParking/topNow").then((res) => {
         // console.log("loadFactorParking", res);
+        res.data.map(item=>{
+          item.value= Number(item.value)
+        })
         this.loadFactorParkingList = res.data;
       });
     },

@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-03 18:21:48
+ * @LastEditTime: 2020-09-04 14:37:53
 -->
 <template>
   <div id="centreLeft1">
@@ -19,10 +19,20 @@
         </div>
       </div>
       <div class="d-flex centerList">
-        <div class="pieList" style="display: flex;flex-direction: column;justify-content: center;align-items: center;">
+        <div
+          class="pieList"
+          style="display: flex;flex-direction: column;justify-content: center;align-items: center;"
+        >
           <div v-for="(item,index) in chartData" :key="index" class="pieMid1">
-            <rightChartRate :id="item.id+100" :tips="(item.use/item.all)*100" :pieUse="item.use" :pieAll="item.all"  :pieName="rate[index].name" :colorObj="rate[1].colorData" />
-            <div class="pieTitle">·{{rate[index].name}}</div>
+            <rightChartRate
+              :id="item.id+100"
+              :tips="(item.use/item.all)*100"
+              :pieUse="item.use"
+              :pieAll="item.all"
+              :pieName="rate[index].name"
+              :colorObj="rate[0].colorData"
+            />
+            <div class="pieTitle1">·{{rate[index].name}}</div>
           </div>
         </div>
       </div>
@@ -43,20 +53,20 @@ export default {
     return {
       rate: [
         {
-          name:"路内泊数",
+          name: "路内泊数",
           colorData: {
-            textStyle: "#3fc0fb",
+            textStyle: "#50d6d9",
             series: {
               color: ["#00bcd44a", "transparent"],
               dataColor: {
-                normal: "#03a9f4",
+                normal: "#50d6d9",
                 shadowColor: "#97e2f5",
               },
             },
           },
         },
         {
-          name:"封闭社区停车场",
+          name: "封闭社区停车场",
           colorData: {
             textStyle: "#67e0e3",
             series: {
@@ -69,7 +79,7 @@ export default {
           },
         },
         {
-          name:"私有封闭式停车场",
+          name: "私有封闭式停车场",
           colorData: {
             textStyle: "#67e0e3",
             series: {
@@ -91,7 +101,7 @@ export default {
     chartData: {
       deep: true,
       handler(val) {
-        this.chartData=val
+        this.chartData = val;
       },
     },
   },
@@ -127,9 +137,10 @@ export default {
   flex: 2;
   height: 100% !important;
 }
-.pieTitle {
+.pieTitle1 {
   font-size: 12px;
-  transform: scale(0.7);
+  // transform: scale(0.7);
   white-space: nowrap;
+  text-align: center;
 }
 </style>

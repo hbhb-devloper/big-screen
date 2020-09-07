@@ -22,11 +22,11 @@ module.exports = {
       //     ['^' + process.env.VUE_APP_BASE_API]: ''
       //   }
       // },
-      "/api": {
+      "/prod-api": {
         target: 'http://hellopop.51vip.biz',
         changeOrigin: true,
         pathRewrite: {
-            "^/api": ""
+            "^/prod-api": ""
         }
     }
     },

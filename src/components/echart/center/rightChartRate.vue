@@ -64,6 +64,7 @@ export default {
       deep: true,
       handler(val) {
         this.tips=val
+        console.log('tipsval',val);
         this.$nextTick(() => {
           this.draw();
         });
@@ -159,9 +160,10 @@ export default {
           {
             name: "面积模式",
             type: "pie",
-            radius: ["55%", "60%"],
+            radius: ["50%", "70%"],
             center: ["50%", "50%"],
-            roseType: "area",
+            roseType: "radius",
+            color: this.colorObj.series.color,
             label: {
               show: false,
             },

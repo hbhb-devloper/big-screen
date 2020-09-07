@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-03 17:19:18
+ * @LastEditTime: 2020-09-04 10:26:45
 -->
 <template>
   <div id="centreLeft1" style="height: 4.5rem;">
@@ -25,7 +25,7 @@
         </div>
         <div class="pieList">
           <div v-for="(item,index) in chartData" :key="index" class="pieMid">
-            <centerChart :id="item.id" :tips="60" :colorObj="rate[index].colorData" />
+            <centerChart :id="item.id" :tips="item.tips" :colorObj="rate[index].colorData" />
             <div class="pieTitle">{{item.name}}</div>
           </div>
         </div>

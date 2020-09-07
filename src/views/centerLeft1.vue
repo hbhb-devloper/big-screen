@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-03 18:23:31
+ * @LastEditTime: 2020-09-04 13:46:48
 -->
 <template>
   <div id="centreLeft1">
@@ -19,7 +19,11 @@
         </div>
       </div>
       <div class="d-flex jc-center">
-        <dv-scroll-ranking-board :config="yujinList" style="width:100%;height:2.6rem" />
+        <dv-scroll-ranking-board
+          ref="deconfig"
+          :config="yujinList"
+          style="width:100%;height:2.6rem"
+        />
       </div>
     </div>
   </div>
@@ -27,7 +31,7 @@
 
 <script>
 export default {
-  props:{
+  props: {
     yujinListData: {
       type: Array,
       required: true,
@@ -39,40 +43,40 @@ export default {
         data: [
           {
             name: "周口",
-            value: 55
+            value: 55,
           },
           {
             name: "南阳",
-            value: 120
+            value: 120,
           },
           {
             name: "西峡",
-            value: 78
+            value: 78,
           },
           {
             name: "驻马店",
-            value: 66
+            value: 66,
           },
           {
             name: "新乡",
-            value: 80
+            value: 80,
           },
           {
             name: "新乡",
-            value: 80
+            value: 80.9,
           },
           {
             name: "新乡",
-            value: 80
+            value: 80,
           },
           {
             name: "新乡",
-            value: 80
-          }
+            value: 80,
+          },
         ],
         waitTime: 4000,
-        unit: "%"
-      }
+        unit: "%",
+      },
     };
   },
   components: {},
@@ -80,12 +84,17 @@ export default {
     yujinListData: {
       deep: true,
       handler(val) {
-        this.yujinList.data=val
+        console.log("yujinListData", val);
+        // this.$nextTick(() => {
+          // this.yujinList.data = val;
+          this.$set(this.yujinList,'data', val);
+          // this.$refs.deconfig = val;
+        // });
       },
     },
   },
   mounted() {
-    this.yujinList.data=this.yujinListData
+    this.yujinList.data = this.yujinListData;
   },
   methods: {},
 };

@@ -35,7 +35,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$http = axios.create({
   //设置10秒超时时间
   timeout: 10000,
-  baseURL: '/api', //这里写后端地址
+  baseURL: '/prod-api/data', //这里写后端地址
 });
 new Vue({
   router,

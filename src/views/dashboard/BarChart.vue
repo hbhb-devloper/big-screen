@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-08-20 10:50:58
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-03 18:18:59
+ * @LastEditTime: 2020-09-07 10:23:00
 -->
 <template>
   <div :class="className" :style="{height:height,width:width}" />
@@ -85,7 +85,7 @@ export default {
         },
         xAxis: [{
           type: 'category',
-          data: ['接入停车场数', '封闭停车场数', '泊位停车场数', '公共停车场数', '封闭社会停车场数'],
+          data: ['接入停车场数', '封闭停车场数', '泊位停车场数', '公共停车场数', '封闭社会停车场数', '封闭社会停车场数', '封闭社会停车场数', '封闭社会停车场数'],
           axisTick: {
             alignWithLabel: true
           }
@@ -100,7 +100,7 @@ export default {
           name: 'pageA',
           type: 'bar',
           stack: 'vistors',
-          barWidth: '60%',
+          barWidth: '30%',
           data: this.barChart,
           animationDuration
         }]
