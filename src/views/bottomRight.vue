@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-04 14:37:53
+ * @LastEditTime: 2020-09-07 14:52:50
 -->
 <template>
   <div id="centreLeft1">
@@ -53,7 +53,7 @@ export default {
     return {
       rate: [
         {
-          name: "路内泊数",
+          name: "接入停车场",
           colorData: {
             textStyle: "#50d6d9",
             series: {
@@ -66,7 +66,7 @@ export default {
           },
         },
         {
-          name: "封闭社区停车场",
+          name: "封闭停车场",
           colorData: {
             textStyle: "#67e0e3",
             series: {
@@ -79,7 +79,7 @@ export default {
           },
         },
         {
-          name: "私有封闭式停车场",
+          name: "泊位停车场",
           colorData: {
             textStyle: "#67e0e3",
             series: {

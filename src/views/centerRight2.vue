@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-03 18:23:39
+ * @LastEditTime: 2020-09-07 14:47:01
 -->
 <template>
   <div id="centreLeft1">
@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  props:{
+  props: {
     yujinListData: {
       type: Array,
       required: true,
@@ -39,40 +39,40 @@ export default {
         data: [
           {
             name: "周口",
-            value: 55
+            value: 55,
           },
           {
             name: "南阳",
-            value: 120
+            value: 120,
           },
           {
             name: "西峡",
-            value: 78
+            value: 78,
           },
           {
             name: "驻马店",
-            value: 66
+            value: 66,
           },
           {
             name: "新乡",
-            value: 80
+            value: 80,
           },
           {
             name: "新乡",
-            value: 80
+            value: 80,
           },
           {
             name: "新乡",
-            value: 80
+            value: 80,
           },
           {
             name: "新乡",
-            value: 80
-          }
+            value: 80,
+          },
         ],
         waitTime: 4000,
-        unit: "%"
-      }
+        unit: "%",
+      },
     };
   },
   components: {},
@@ -80,12 +80,20 @@ export default {
     yujinListData: {
       deep: true,
       handler(val) {
-        this.yujinList.data=val
+        // let newVal = {
+        //   data: val,
+        //   waitTime: 4000,
+        //   unit: "%",
+        // };
+        // this.yujinList.data = { ...newVal };
+        this.yujinList.data = val;
+        this.yujinList = {...this.yujinList}
+
       },
     },
   },
   mounted() {
-    this.yujinList.data=this.yujinListData
+    this.yujinList.data = this.yujinListData;
   },
   methods: {},
 };

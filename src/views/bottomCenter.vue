@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-04 10:26:45
+ * @LastEditTime: 2020-09-07 15:31:57
 -->
 <template>
   <div id="centreLeft1" style="height: 4.5rem;">
@@ -20,8 +20,8 @@
       </div> -->
       <div class="d-flex centerList">
         <div class="select">
-          <dv-decoration-9 style="width:40px;height:40px;">道路</dv-decoration-9>
           <dv-decoration-9 style="width:40px;height:40px;">封闭</dv-decoration-9>
+          <dv-decoration-9 style="width:40px;height:40px;">道路</dv-decoration-9>
         </div>
         <div class="pieList">
           <div v-for="(item,index) in chartData" :key="index" class="pieMid">

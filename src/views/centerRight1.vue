@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-03 11:58:12
+ * @LastEditTime: 2020-09-07 14:38:01
 -->
 <template>
   <div id="centreLeft1">
@@ -19,14 +19,14 @@
         </div>
       </div>
       <div class="d-flex jc-center">
-         <bar-chart height="2.8rem" :bar-chart="barChart" />
+         <topChart width="6.8rem" height="2.8rem" :bar-chart="barChart" :id="chartId"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import BarChart from "./dashboard/BarChart";
+import topChart from "@/components/echart/topRight/topChartRate";
 
 export default {
   props: {
@@ -37,11 +37,12 @@ export default {
   },
   data() {
     return {
-      barChart:[]
+      barChart:[],
+      chartId:'charId'
     };
   },
   components: {
-    BarChart,
+    topChart,
   },
   watch: {
     barList: {

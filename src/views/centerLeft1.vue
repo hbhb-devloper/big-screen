@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-04 13:46:48
+ * @LastEditTime: 2020-09-07 17:48:34
 -->
 <template>
   <div id="centreLeft1">
@@ -84,12 +84,8 @@ export default {
     yujinListData: {
       deep: true,
       handler(val) {
-        console.log("yujinListData", val);
-        // this.$nextTick(() => {
-          // this.yujinList.data = val;
-          this.$set(this.yujinList,'data', val);
-          // this.$refs.deconfig = val;
-        // });
+        this.yujinList.data = val;
+        this.yujinList = { ...this.yujinList };
       },
     },
   },
