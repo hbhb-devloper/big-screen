@@ -101,7 +101,11 @@ export default {
           }
         },
         legend: {
-          data: [ '停车时长显示']
+          data: [ '停车时长显示'],
+          inactiveColor :'#333',
+          textStyle:{
+            color:'#fff',
+          }
         },
         series: [
           

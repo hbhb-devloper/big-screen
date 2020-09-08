@@ -186,7 +186,8 @@ export default {
       orderNumber: {},
       incomeNum: 0,
       orderNum: 0,
-      yemianload:false,
+      yemianload: false,
+      jisuNum: 8,
       config: {
         points: [
           {
@@ -384,11 +385,19 @@ export default {
       },
     };
   },
-   watch: {
+  watch: {
+    // jisuNum: {
+    //   deep: true,
+    //   handler(val) {
+    //     console.log("val",val);
+    //     if (val==0) {
+    //       this.loading = false;
+    //     }
+    //   },
+    // },
     yemianload: {
       deep: true,
       handler() {
-        // this.config = {...this.config};
         if (this.yemianload) {
           this.loading=false
         }
@@ -611,6 +620,8 @@ export default {
     // 这是一个定时器
     timer1() {
       this.timer = setTimeout(() => {
+        // this.loading=true
+        this.jisuNum=8
         this.showinfo();
         this.timer1();
         // }, 3600000);
@@ -625,12 +636,14 @@ export default {
       this.getcurrentUse();
       this.getTotalIncome();
       await this.getLoadFactorParkingNow();
-      this.yemianload=true
+      this.yemianload = true;
     },
     getAmountSummary() {
       this.$http.get("/amountSummary/nowAndYesterday").then((res) => {
         // console.log("nowAndYesterday", res);
         this.lineChartData = res.data.newVisitis;
+        this.jisuNum--;
+        
       });
     },
     getLoadFactorParking() {
@@ -640,6 +653,8 @@ export default {
           item.value = Number(item.value);
         });
         this.loadFactorParkingList = res.data;
+        this.jisuNum--;
+        
       });
     },
     getLoadFactorParkingNow() {
@@ -695,8 +710,9 @@ export default {
             });
             let conObj = that.deepClone(that.config);
             // that.config.lines.shift();
-            console.log('conObj',conObj);
             that.config = { ...conObj };
+            that.jisuNum--;
+            
             resolve();
           })
           .catch((err) => {
@@ -709,12 +725,16 @@ export default {
       this.$http.get("/spaceUse/totalNum").then((res) => {
         // console.log("spaceUse", res);
         this.spaceUseList = res.data.data;
+        this.jisuNum--;
+        
       });
     },
     getdurationStatistics() {
       this.$http.get("/durationStatistics/now").then((res) => {
         // console.log("durationStatistics", res);
         this.durationStatisticsList = res.data;
+        this.jisuNum--;
+        
       });
     },
     getmonitoring() {
@@ -725,11 +745,15 @@ export default {
         // console.log("monitoring", res);
 
         this.monitoringList = res.data;
+        this.jisuNum--;
+        
       });
     },
     getcurrentUse() {
       this.$http.get("/spaceUse/currentUse").then((res) => {
         this.currentUseList = res.data;
+        this.jisuNum--;
+        
       });
     },
     getTotalIncome() {
@@ -738,6 +762,8 @@ export default {
         // console.log("nowIncome", res);
         that.orderNum = Number(res.data.data.totalOrder);
         that.incomeNum = Number(res.data.data.payMoney) / 100;
+        this.jisuNum--;
+        
       });
     },
     // cancelLoading() {

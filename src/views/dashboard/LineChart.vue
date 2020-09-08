@@ -113,6 +113,10 @@ export default {
         },
         legend: {
           data: ["昨日", "今日"],
+          inactiveColor :'#333',
+          textStyle:{
+            color:'#fff',
+          }
         },
         series: [
           {

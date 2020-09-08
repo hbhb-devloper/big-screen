@@ -4,7 +4,7 @@
  * @Author: CYZ
  * @Date: 2020-09-01 10:06:32
  * @LastEditors: CYZ
- * @LastEditTime: 2020-09-07 14:38:01
+ * @LastEditTime: 2020-09-08 14:16:18
 -->
 <template>
   <div id="centreLeft1">
@@ -19,7 +19,7 @@
         </div>
       </div>
       <div class="d-flex jc-center">
-         <topChart width="6.8rem" height="2.8rem" :bar-chart="barChart" :id="chartId"/>
+         <topChart width="100%" height="2.8rem" :bar-chart="barChart" :id="chartId"/>
       </div>
     </div>
   </div>
