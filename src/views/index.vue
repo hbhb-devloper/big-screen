@@ -399,7 +399,7 @@ export default {
       deep: true,
       handler() {
         if (this.yemianload) {
-          this.loading=false
+          this.loading = false;
         }
       },
     },
@@ -420,212 +420,212 @@ export default {
     // this.cancelLoading();
     this.showinfo();
     this.timer1();
-    this.config= {
-        points: [
-          {
-            name: "廊坊停车场",
-            coordinate: [0.5, 0.3],
-            text: {
-              show: false,
-            },
+    this.config = {
+      points: [
+        {
+          name: "廊坊停车场",
+          coordinate: [0.5, 0.3],
+          text: {
+            show: false,
           },
-          {
-            name: "特抱抱停车场",
-            coordinate: [0.7, 0.23],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "特抱抱停车场",
+          coordinate: [0.7, 0.23],
+          text: {
+            show: false,
           },
-          {
-            name: "武汉停车场",
-            coordinate: [0.65, 0.46],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "武汉停车场",
+          coordinate: [0.65, 0.46],
+          text: {
+            show: false,
           },
-          {
-            name: "大兴停车场",
-            coordinate: [0.7, 0.68],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "大兴停车场",
+          coordinate: [0.7, 0.68],
+          text: {
+            show: false,
           },
-          {
-            name: "洛阳停车场",
-            coordinate: [0.68, 0.13],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "洛阳停车场",
+          coordinate: [0.68, 0.13],
+          text: {
+            show: false,
           },
-          {
-            name: "焦作停车场",
-            coordinate: [0.2, 0.25],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "焦作停车场",
+          coordinate: [0.2, 0.25],
+          text: {
+            show: false,
           },
-          {
-            name: "开封停车场",
-            coordinate: [0.75, 0.4],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "开封停车场",
+          coordinate: [0.75, 0.4],
+          text: {
+            show: false,
           },
-          {
-            name: "天津停车场",
-            coordinate: [0.37, 0.1],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "天津停车场",
+          coordinate: [0.37, 0.1],
+          text: {
+            show: false,
           },
-          {
-            name: "许昌停车场",
-            coordinate: [0.8, 0.6],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "许昌停车场",
+          coordinate: [0.8, 0.6],
+          text: {
+            show: false,
           },
-          {
-            name: "平顶山停车场",
-            coordinate: [0.74, 0.85],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "平顶山停车场",
+          coordinate: [0.74, 0.85],
+          text: {
+            show: false,
           },
-          {
-            name: "洛阳停车场",
-            coordinate: [0.5, 0.14],
-            text: {
-              show: false,
-            },
+        },
+        {
+          name: "洛阳停车场",
+          coordinate: [0.5, 0.14],
+          text: {
+            show: false,
           },
+        },
 
-          {
-            name: "北京停车场",
-            coordinate: [0.35, 0.2],
-            text: {
-              show: false,
-            },
+        {
+          name: "北京停车场",
+          coordinate: [0.35, 0.2],
+          text: {
+            show: false,
           },
-          {
-            name: "合肥停车场",
-            coordinate: [0.6, 0.54],
-            text: {
-              show: false,
-            },
-          },
-          {
-            name: "双流停车场",
-            coordinate: [0.75, 0.74],
-            text: {
-              show: false,
-            },
-          },
-          {
-            name: "杭州停车场",
-            coordinate: [0.69, 0.32],
-            text: {
-              show: false,
-            },
-          },
-        ],
-        lines: [
-          // {
-          //   source: "廊坊停车场",
-          //   target: "廊坊停车场",
-          //   width: 0,
-          // },
-          {
-            source: "特抱抱停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "武汉停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "大兴停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "洛阳停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "焦作停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "开封停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "天津停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "许昌停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "平顶山停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "洛阳停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "北京停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "合肥停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "双流停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-          {
-            source: "杭州停车场",
-            target: "廊坊停车场",
-            width: 0,
-          },
-        ],
-        icon: {
-          show: true,
-          // src: "https://www.zjkbtc.com/location_dot.png",
         },
-        text: {
-          show: false,
+        {
+          name: "合肥停车场",
+          coordinate: [0.6, 0.54],
+          text: {
+            show: false,
+          },
         },
-        bgImgSrc: "https://www.zjkbtc.com/map.png",
-      }
+        {
+          name: "双流停车场",
+          coordinate: [0.75, 0.74],
+          text: {
+            show: false,
+          },
+        },
+        {
+          name: "杭州停车场",
+          coordinate: [0.69, 0.32],
+          text: {
+            show: false,
+          },
+        },
+      ],
+      lines: [
+        // {
+        //   source: "廊坊停车场",
+        //   target: "廊坊停车场",
+        //   width: 0,
+        // },
+        {
+          source: "特抱抱停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "武汉停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "大兴停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "洛阳停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "焦作停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "开封停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "天津停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "许昌停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "平顶山停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "洛阳停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "北京停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "合肥停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "双流停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+        {
+          source: "杭州停车场",
+          target: "廊坊停车场",
+          width: 0,
+        },
+      ],
+      icon: {
+        show: true,
+        // src: "https://www.zjkbtc.com/location_dot.png",
+      },
+      text: {
+        show: false,
+      },
+      bgImgSrc: "https://www.zjkbtc.com/map.png",
+    };
   },
   methods: {
     // 这是一个定时器
     timer1() {
       this.timer = setTimeout(() => {
         // this.loading=true
-        this.jisuNum=8
+        this.jisuNum = 8;
         this.showinfo();
         this.timer1();
-        // }, 3600000);
-      }, 10000);
+      }, 3600000);
+      // }, 10000);
     },
     async showinfo() {
       this.getAmountSummary();
@@ -643,7 +643,6 @@ export default {
         // console.log("nowAndYesterday", res);
         this.lineChartData = res.data.newVisitis;
         this.jisuNum--;
-        
       });
     },
     getLoadFactorParking() {
@@ -654,7 +653,6 @@ export default {
         });
         this.loadFactorParkingList = res.data;
         this.jisuNum--;
-        
       });
     },
     getLoadFactorParkingNow() {
@@ -666,7 +664,8 @@ export default {
             console.log("loadFactorParking", res);
             let target = res.data[0].name;
             res.data.map((item, index) => {
-              let lowIcon = {
+              if (index + 1 <= that.config.points.length) {
+                let lowIcon = {
                 show: true,
                 src: "https://www.zjkbtc.com/low.png",
                 width: 30,
@@ -707,12 +706,14 @@ export default {
                 point.icon = highIcon;
                 point.text.show = true;
               }
+              }
+              
             });
             let conObj = that.deepClone(that.config);
             // that.config.lines.shift();
             that.config = { ...conObj };
             that.jisuNum--;
-            
+
             resolve();
           })
           .catch((err) => {
@@ -726,7 +727,6 @@ export default {
         // console.log("spaceUse", res);
         this.spaceUseList = res.data.data;
         this.jisuNum--;
-        
       });
     },
     getdurationStatistics() {
@@ -734,7 +734,6 @@ export default {
         // console.log("durationStatistics", res);
         this.durationStatisticsList = res.data;
         this.jisuNum--;
-        
       });
     },
     getmonitoring() {
@@ -746,14 +745,12 @@ export default {
 
         this.monitoringList = res.data;
         this.jisuNum--;
-        
       });
     },
     getcurrentUse() {
       this.$http.get("/spaceUse/currentUse").then((res) => {
         this.currentUseList = res.data;
         this.jisuNum--;
-        
       });
     },
     getTotalIncome() {
@@ -763,7 +760,6 @@ export default {
         that.orderNum = Number(res.data.data.totalOrder);
         that.incomeNum = Number(res.data.data.payMoney) / 100;
         this.jisuNum--;
-        
       });
     },
     // cancelLoading() {
