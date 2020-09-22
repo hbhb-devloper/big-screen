@@ -696,15 +696,15 @@ export default {
               if (item.value <= 50) {
                 point.name = item.name;
                 point.icon = lowIcon;
-                point.text.show = true;
+                point.text.show = false;
               } else if (item.value > 50 && item.value < 80) {
                 point.name = item.name;
                 point.icon = midIcon;
-                point.text.show = true;
+                point.text.show = false;
               } else {
                 point.name = item.name;
                 point.icon = highIcon;
-                point.text.show = true;
+                point.text.show = false;
               }
               }
               
