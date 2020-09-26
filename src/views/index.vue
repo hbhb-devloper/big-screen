@@ -1,8 +1,8 @@
 <template>
   <div id="index">
     <dv-full-screen-container class="bg">
-      <dv-loading v-if="loading">Loading...</dv-loading>
-      <div v-else class="host-body">
+      <!-- <dv-loading v-show="loading">Loading...</dv-loading> -->
+      <div class="host-body">
         <div class="d-flex jc-center" style=" height: 0.625rem;">
           <!-- <dv-decoration-10 style="width:33.3%;height:.0625rem;" />
           <div class="d-flex jc-center">
@@ -83,7 +83,9 @@
                     <div style="padding:0 5px;">【元】</div>
                   </dv-decoration-7>
                 </div>
-                <dv-flyline-chart-enhanced :config="config" style="width:80%;height:80%;" />
+                <mapTalk :mapArr="mapArr" :loadArr="loadArr" />
+                <!-- <div id="mapDom" ref="Refmap" style="width:80%;height:80%;"></div> -->
+                <!-- <dv-flyline-chart-enhanced :config="config" style="width:80%;height:80%;" /> -->
               </el-row>
             </el-col>
             <el-col :span="7">
@@ -99,30 +101,6 @@
               </el-row>
             </el-col>
           </el-row>
-          <!-- 第三行数据 -->
-          <!-- <div class="content-box">
-            <div>
-              <dv-border-box-12>
-                <centerLeft1 />
-              </dv-border-box-12>
-            </div>
-            <div>
-              <dv-border-box-12>
-                <centerLeft2 />
-              </dv-border-box-12>
-            </div>
-            <div>
-              <center />
-            </div>
-            <div>
-              <centerRight2 />
-            </div>
-            <div>
-              <dv-border-box-13>
-                <centerRight1 />
-              </dv-border-box-13>
-            </div>
-          </div>-->
 
           <!-- 第四行数据 -->
           <!-- <div class="bototm-box"> -->
@@ -169,12 +147,16 @@ import centerRight2 from "./centerRight2";
 import bottomCenter from "./bottomCenter";
 import bottomLeft from "./bottomLeft";
 import bottomRight from "./bottomRight";
+import mapTalk from "./map";
 // import centerMap from "./centerMap";
 import numberGrow from "@/components/echart/number/numberGrow";
-
 export default {
   data() {
     return {
+      loadArr:[],
+      mapArr:[],
+      polygons: [],
+      limitLines: [],
       loading: true,
       lineChartData: {},
       value5: 50,
@@ -382,6 +364,7 @@ export default {
           show: false,
         },
         bgImgSrc: "https://www.zjkbtc.com/map.png",
+        
       },
     };
   },
@@ -414,6 +397,7 @@ export default {
     bottomCenter,
     bottomRight,
     numberGrow,
+    mapTalk
     // centerMap,
   },
   mounted() {
@@ -635,18 +619,38 @@ export default {
       this.getmonitoring();
       this.getcurrentUse();
       this.getTotalIncome();
+      this.getParkFindAll();
       await this.getLoadFactorParkingNow();
       this.yemianload = true;
     },
+    getParkFindAll() {
+      this.$http.get("/data/loadFactorParking/findAllNow").then((res) => {
+        console.log("findAll", res);
+        let parkArr=[]
+        let loadFactorArr=[]
+        res.data.map(item=>{
+          let parkItem=[]
+          parkItem.push(item.parkingLongitude)
+          parkItem.push(item.parkingLatitude)
+          parkArr.push(parkItem)
+          loadFactorArr.push(item.loadFactor)
+        })
+        // console.log('parkArr',parkArr);
+        this.mapArr=parkArr
+        this.loadArr=loadFactorArr
+        // this.lineChartData = res.data.newVisitis;
+        // this.jisuNum--;
+      });
+    },
     getAmountSummary() {
-      this.$http.get("/amountSummary/nowAndYesterday").then((res) => {
+      this.$http.get("/data/amountSummary/nowAndYesterday").then((res) => {
         // console.log("nowAndYesterday", res);
         this.lineChartData = res.data.newVisitis;
         this.jisuNum--;
       });
     },
     getLoadFactorParking() {
-      this.$http.get("/loadFactorParking/topNow").then((res) => {
+      this.$http.get("/data/loadFactorParking/topNow").then((res) => {
         // console.log("loadFactorParking", res);
         res.data.map((item) => {
           item.value = Number(item.value);
@@ -659,55 +663,54 @@ export default {
       let that = this;
       new Promise(function (resolve, reject) {
         that.$http
-          .get("/loadFactorParking/now")
+          .get("/data/loadFactorParking/now")
           .then((res) => {
             console.log("loadFactorParking", res);
             let target = res.data[0].name;
             res.data.map((item, index) => {
               if (index + 1 <= that.config.points.length) {
                 let lowIcon = {
-                show: true,
-                src: "https://www.zjkbtc.com/low.png",
-                width: 30,
-                height: 30,
-              };
-              let midIcon = {
-                show: true,
-                src: "https://www.zjkbtc.com/location_dot.png",
-                width: 30,
-                height: 30,
-              };
-              let highIcon = {
-                show: true,
-                src: "https://www.zjkbtc.com/light.png",
-                width: 30,
-                height: 30,
-              };
-              let point = that.config.points[index];
-              // let line = that.config.lines[index];
-              if (item.name != target) {
-                that.config.lines[index - 1] = {
-                  source: item.name,
-                  target: target,
-                  width: 0,
+                  show: true,
+                  src: "https://www.zjkbtc.com/low.png",
+                  width: 30,
+                  height: 30,
                 };
-              }
+                let midIcon = {
+                  show: true,
+                  src: "https://www.zjkbtc.com/location_dot.png",
+                  width: 30,
+                  height: 30,
+                };
+                let highIcon = {
+                  show: true,
+                  src: "https://www.zjkbtc.com/light.png",
+                  width: 30,
+                  height: 30,
+                };
+                let point = that.config.points[index];
+                // let line = that.config.lines[index];
+                if (item.name != target) {
+                  that.config.lines[index - 1] = {
+                    source: item.name,
+                    target: target,
+                    width: 0,
+                  };
+                }
 
-              if (item.value <= 50) {
-                point.name = item.name;
-                point.icon = lowIcon;
-                point.text.show = false;
-              } else if (item.value > 50 && item.value < 80) {
-                point.name = item.name;
-                point.icon = midIcon;
-                point.text.show = false;
-              } else {
-                point.name = item.name;
-                point.icon = highIcon;
-                point.text.show = false;
+                if (item.value <= 50) {
+                  point.name = item.name;
+                  point.icon = lowIcon;
+                  point.text.show = false;
+                } else if (item.value > 50 && item.value < 80) {
+                  point.name = item.name;
+                  point.icon = midIcon;
+                  point.text.show = false;
+                } else {
+                  point.name = item.name;
+                  point.icon = highIcon;
+                  point.text.show = false;
+                }
               }
-              }
-              
             });
             let conObj = that.deepClone(that.config);
             // that.config.lines.shift();
@@ -723,21 +726,21 @@ export default {
       });
     },
     getspaceUse() {
-      this.$http.get("/spaceUse/totalNum").then((res) => {
+      this.$http.get("/data/spaceUse/totalNum").then((res) => {
         // console.log("spaceUse", res);
         this.spaceUseList = res.data.data;
         this.jisuNum--;
       });
     },
     getdurationStatistics() {
-      this.$http.get("/durationStatistics/now").then((res) => {
+      this.$http.get("/data/durationStatistics/now").then((res) => {
         // console.log("durationStatistics", res);
         this.durationStatisticsList = res.data;
         this.jisuNum--;
       });
     },
     getmonitoring() {
-      this.$http.get("/monitoring/now").then((res) => {
+      this.$http.get("/data/monitoring/now").then((res) => {
         res.data.map((item) => {
           item.tips = Number(item.tips);
         });
@@ -748,14 +751,14 @@ export default {
       });
     },
     getcurrentUse() {
-      this.$http.get("/spaceUse/currentUse").then((res) => {
+      this.$http.get("/data/spaceUse/currentUse").then((res) => {
         this.currentUseList = res.data;
         this.jisuNum--;
       });
     },
     getTotalIncome() {
       let that = this;
-      this.$http.get("/nowIncome/totalIncome").then((res) => {
+      this.$http.get("/data/nowIncome/totalIncome").then((res) => {
         // console.log("nowIncome", res);
         that.orderNum = Number(res.data.data.totalOrder);
         that.incomeNum = Number(res.data.data.payMoney) / 100;

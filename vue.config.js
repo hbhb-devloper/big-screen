@@ -23,10 +23,11 @@ module.exports = {
       //   }
       // },
       "/prod-api": {
-        target: 'http://hellopop.51vip.biz',
+        target: 'https://www.zjkbtc.com',
+        // target: 'http://hellopop.51vip.biz',
         changeOrigin: true,
         pathRewrite: {
-            "^/prod-api": ""
+            "^/prod-api": "/prod-api"
         }
     }
     },
